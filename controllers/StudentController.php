@@ -12,6 +12,8 @@ namespace app\controllers;
 use app\models\Student;
 use app\models\University;
 use yii\web\Controller;
+use app\models\StudentForm;
+use Yii;
 
 class StudentController extends Controller
 {
@@ -29,6 +31,19 @@ class StudentController extends Controller
 
     public function actionAdd()
     {
-        return $this->render('add');
+        $model = new StudentForm();
+        if($model->load(Yii::$app->request->post()))
+        {
+            if($model->save())
+            {
+                Yii::$app->session->setFlash('success', 'Запись добавлена успешно');
+                return $this->refresh();
+            }
+            else
+            {
+                Yii::$app->session->setFlash('error', 'Ошибка');
+            }
+        }
+        return $this->render('add', compact('model'));
     }
 }
