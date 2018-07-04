@@ -2,14 +2,10 @@
 
 use yii\db\Migration;
 
-/**
- * Handles the creation of table `universitys`.
- */
+
 class m180704_035826_create_universitys_table extends Migration
 {
-    /**
-     * {@inheritdoc}
-     */
+
     public function safeUp()
     {
         $this->createTable('universitys', [
@@ -17,13 +13,21 @@ class m180704_035826_create_universitys_table extends Migration
             'name' => $this->string()->notNull()->unique(),
             'region' => $this->string()->notNull(),
         ]);
+
+        $this->batchInsert('universitys',
+            ['name', 'region'],
+            [['АлтГТУ им. И. И. Ползунова', 'Алтайский край'],
+             ['АГУ', 'Алтайский край'],
+             ['АГМУ', 'Алтайский край']]
+        );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function safeDown()
     {
+        $this->delete(
+            'universitys',
+            ['id' => [1, 2, 3]]
+        );
         $this->dropTable('universitys');
     }
 }
