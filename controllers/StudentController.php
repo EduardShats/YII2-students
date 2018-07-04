@@ -17,15 +17,18 @@ class StudentController extends Controller
 {
     public function actionIndex()
     {
-        $students = Student::find()->asArray()->orderBy('surname')->all();
-        $universitys = University::find()->asArray()->orderBy('name')->all();
-        return $this->render('index', compact('students', 'universitys'));
+        $universitys = University::find()->asArray()->with('students')->orderBy('name')->all();
+        return $this->render('index', compact('universitys'));
     }
 
     public function actionStudent($id)
     {
-        $student = Student::find()->asArray()->where(['id' => $id])->one();
-        $university = University::find()->asArray()->where(['id' => $student['university_id']])->one();
-        return $this->render('student', compact('student', 'university'));
+        $student = Student::find()->asArray()->with('university')->where(['id' => $id])->one();
+        return $this->render('student', compact('student'));
+    }
+
+    public function actionAdd()
+    {
+        return $this->render('add');
     }
 }

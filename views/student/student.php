@@ -2,7 +2,9 @@
 
 /* @var $this yii\web\View */
 use \yii\helpers\Url;
+$university = $student['university'];
 $this->title = $student['surname'].' '.$student['forename'].' '.$student['patronymic'].' - '.$university['name'];
+
 ?>
 
 <h1><?= $student['surname'].' '.$student['forename'].' '.$student['patronymic']?></h1>

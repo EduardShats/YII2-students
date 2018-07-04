@@ -17,4 +17,9 @@ class University extends ActiveRecord
     {
         return 'universitys';
     }
+
+    public function getStudents()
+    {
+        return $this->hasMany(Student::className(), ['university_id' => 'id']);
+    }
 }

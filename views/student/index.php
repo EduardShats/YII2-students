@@ -21,6 +21,7 @@ $this->title = 'Студенты';
                     </tr>
                 </thead>
                 <tbody>";
+                $students = $value['students'];
                 foreach($students as $value1)
                 {
                     if($value1['university_id'] == $value['id'])
