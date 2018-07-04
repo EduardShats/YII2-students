@@ -28,7 +28,7 @@ class StudentForm extends Model
             [['name', 'forename', 'patronymic', 'university', 'profession', 'course', 'info'], 'required'],
             // name, forename, patronymic должны иметь длинну от 2 до 20 символов
             [['name', 'forename', 'patronymic'], 'string', 'length' => [2, 20]],
-            [['name', 'forename', 'patronymic', 'university', 'profession', 'info'], 'trim'],
+            [['name', 'forename', 'patronymic', 'profession', 'info'], 'trim'],
             ['course', 'in', 'range' => [1, 2, 3, 4, 5, 6]]
         ];
     }
