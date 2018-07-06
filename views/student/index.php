@@ -42,5 +42,5 @@ $this->title = 'Студенты';
         }
     ?>
 
-
+        <a href='<?= Url::toRoute(['student/add'])?>' >Добавить запись</a>
     </div>
