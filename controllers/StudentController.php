@@ -44,6 +44,7 @@ class StudentController extends Controller
                 Yii::$app->session->setFlash('error', 'Ошибка');
             }
         }
-        return $this->render('add', compact('model'));
+        $universitys = University::find()->asArray()->orderBy('name')->all();
+        return $this->render('add', compact('universitys','model'));
     }
 }
